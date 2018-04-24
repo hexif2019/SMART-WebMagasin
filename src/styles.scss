@@ -4,4 +4,8 @@
 @import "./sass/mixins";
 @import "./sass/variables";
 
+// load bootstrap;
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// load personal style
 @import "./sass/styles.scss";
