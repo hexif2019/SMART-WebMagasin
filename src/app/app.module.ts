@@ -18,6 +18,7 @@ import { PageBasketComponent } from './pages/page-basket/page-basket.component';
 import { PagePaymentComponent } from './pages/page-payment/page-payment.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { EventHandlerService } from './services/event-handler.service';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
