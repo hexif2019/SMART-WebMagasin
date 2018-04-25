@@ -17,6 +17,7 @@ import { PageShopComponent } from './pages/page-shop/page-shop.component';
 import { PageBasketComponent } from './pages/page-basket/page-basket.component';
 import { PagePaymentComponent } from './pages/page-payment/page-payment.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { EventHandlerService } from './services/event-handler.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -47,7 +48,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService, ResidanceService],
+  providers: [EventHandlerService, UserService, ResidanceService],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule]
 })
