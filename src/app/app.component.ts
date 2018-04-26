@@ -1,6 +1,6 @@
 import {Component, TemplateRef} from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import {EventHandlerService} from './services/event-handler.service';
+import {EventHandlerService} from './services/article.service';
 
 @Component({
   selector: 'app-root',

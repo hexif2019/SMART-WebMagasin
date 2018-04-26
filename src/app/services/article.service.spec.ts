@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { EventHandlerService } from './event-handler.service';
+import { EventHandlerService } from './article.service';
 
 describe('EventHandlerService', () => {
   beforeEach(() => {
