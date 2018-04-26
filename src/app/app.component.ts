@@ -1,6 +1,7 @@
 import {Component, TemplateRef} from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import {EventHandlerService} from './services/article.service';
+import {Article} from './models/article.model';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,13 @@ import {EventHandlerService} from './services/article.service';
 })
 export class AppComponent {
   title = 'app';
-  articles = null;
+  articles: any;
+  keyWords: string;
   public modalRef: BsModalRef;
   constructor(private modalService: BsModalService, private eventHandler: EventHandlerService) {}
 
   search(keyWords: string) {
-    this.eventHandler.rechercher('asd').subscribe(articles => {
+    this.eventHandler.rechercher(keyWords).subscribe(articles => {
        this.articles = articles;
     });
   }
