@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Article } from '../models/article.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class EventHandlerService {
@@ -9,7 +10,7 @@ export class EventHandlerService {
   constructor(private http: HttpClient) {  }
   articles: Article[];
   public rechercher(keyWords: string) {
-    /*return this.http.get<any>('/')
+    return this.http.get('/')
       .map(dochtml => [{
           name: 'CocaCola',
           nb: 500,
@@ -26,8 +27,7 @@ export class EventHandlerService {
           icon: 'adresse d\'icon',
           denom: 'a carbonated soft drink produced'
         }]);
-  }*/
-    return [{
+    /*    return [{
       name: 'CocaCola',
       nb: 500,
       prix: 100,
@@ -42,5 +42,7 @@ export class EventHandlerService {
         poids: 500,
         icon: 'adresse d\'icon',
         denom: 'a carbonated soft drink produced'
-      }];
+      }];*/
+  }
+
 }

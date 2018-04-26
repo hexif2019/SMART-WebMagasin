@@ -14,7 +14,9 @@ export class AppComponent {
   constructor(private modalService: BsModalService, private eventHandler: EventHandlerService) {}
 
   search(keyWords: string) {
-    this.articles = this.eventHandler.rechercher('asd');
+    this.eventHandler.rechercher('asd').subscribe(articles => {
+       this.articles = articles;
+    });
   }
 
   public openModal(template: TemplateRef<any>) {
