@@ -6,6 +6,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
+import {HttpClientModule} from "@angular/common/http";
+import {UserService} from "./services/user.service";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -18,7 +21,7 @@ import { AppComponent } from './app.component';
     TooltipModule.forRoot(),
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule]
 })
