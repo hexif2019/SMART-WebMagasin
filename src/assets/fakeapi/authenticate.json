@@ -1,0 +1,9 @@
+{
+  "nom": "vogel",
+  "prenom": "hugues",
+  "token": "TOKEN123456789",
+  "email": "hugues.vogel@boitemail.com",
+  "residence": {
+    "adresse": "20 avenue Ablert Einstein, 69100 Villeurban"
+  }
+}

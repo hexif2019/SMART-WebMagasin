@@ -1,12 +1,29 @@
 <div class="loginmodal-container">
-  <div *ngIf="msgError" class="alert-danger"> {{ msgError }}</div>
-  <h1>Login to Your Account</h1><br>
-  <form (ngSubmit)="login()">
-    <input type="text" name="user" placeholder="Username" ngClass="{disable: loadLogin}" [(ngModel)]="username">
-    <input type="password" name="pass" placeholder="Password" ngClass="{disable: loadLogin}" [(ngModel)]="password">
-    <input type="submit" name="login" class="login loginmodal-submit" ngClass="{disable: loadLogin}" value="Login">
-  </form>
-  <div class="login-help">
-    <a href="#">Register</a> - <a href="#">Forgot Password</a>
+  <div *ngIf="!showRegister">
+    <div *ngIf="msgLoginError" class="alert-danger"> {{ msgLoginError }}</div>
+    <h1>Login</h1><br>
+    <form (ngSubmit)="login()">
+      <input type="email" name="email" placeholder="Email" ngClass="{disable: loadLogin}" [(ngModel)]="email" #name="ngModel">
+      <input type="password" name="pass" placeholder="Password" ngClass="{disable: loadLogin}" [(ngModel)]="password" #name="ngModel">
+      <input type="submit" name="login" class="login loginmodal-submit" ngClass="{disable: loadLogin}" value="Login" >
+    </form>
+    <div class="login-help">
+      <a (click)="showRegister = true">Register</a>
+    </div>
+  </div>
+  <div *ngIf="showRegister">
+    <div *ngIf="msgRegisterError" class="alert-danger"> {{ msgRegisterError }}</div>
+    <h1>Register</h1><br>
+    <form (ngSubmit)="register()">
+      <input type="text" name="nom" placeholder="Nom" ngClass="{disable: loadLogin}" [(ngModel)]="nom">
+      <input type="text" name="prenom" placeholder="Prenom" ngClass="{disable: loadLogin}" [(ngModel)]="prenom">
+      <input type="email" name="email" placeholder="your.email@email.com" ngClass="{disable: loadLogin}" [(ngModel)]="email">
+      <input type="password" name="pass" placeholder="Password" ngClass="{disable: loadLogin}" [(ngModel)]="password" #name="ngModel">
+      <input type="text" name="">
+      <input type="submit" name="login" class="login loginmodal-submit" ngClass="{disable: loadLogin}" value="Login" >
+    </form>
+    <div class="login-help">
+      <a (click)="showRegister = false">Login</a>
+    </div>
   </div>
 </div>

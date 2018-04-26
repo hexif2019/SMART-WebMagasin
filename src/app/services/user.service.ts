@@ -20,7 +20,8 @@ export class UserService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<User>('/api/authenticate', { username: username+"", password: password+"" })
+    //TODO ONAPI return this.http.post<User>('/api/authenticate', { username: username+"", password: password+"" })
+    return this.http.get<User>('/api/authenticate.json') //TODO RM ONAPI
       .map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));

@@ -2,7 +2,8 @@ export class Residence{
   adresse: string;
 }
 export class User{
-  name: string;
+  nom: string;
+  prenom: string;
   token: string;
   residence: Residence;
   email: string;

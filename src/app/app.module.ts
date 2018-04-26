@@ -7,7 +7,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import {HttpClientModule} from "@angular/common/http";
 import {UserService} from "./services/user.service";
 import {FormsModule} from "@angular/forms";
@@ -16,8 +15,7 @@ import {FormsModule} from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
