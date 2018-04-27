@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {User} from "../modal/user";
 import {FormControl} from "@angular/forms";
@@ -23,7 +23,7 @@ export class LoginComponent {
   loadLogin = false;
   msgLoginError: string;
   msgRegisterError: string;
-  showRegister = false;
+  @Input() showRegister: boolean;
 
   codepostal = new FormControl();
   valideCp = false;
