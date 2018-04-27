@@ -18,7 +18,7 @@ import { PagePaymentComponent } from './pages/page-payment/page-payment.componen
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { RechercherArticleComponent } from './rechercher-article/rechercher-article.component';
-import {ArticleService} from './services/article.service';
+import {MainService} from './services/main.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -50,7 +50,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService, ResidanceService, ArticleService],
+  providers: [UserService, ResidanceService, MainService],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule]
 })

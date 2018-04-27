@@ -1,8 +1,12 @@
 export class Article {
-  name: string;
+  denomination: string;
+  description: string;
   nb: number;
   prix: number;
   poids: number;
-  icon: string;
-  denom: string;
+  img: string;
+  volume: number | null;
+  longeur: number | null;
+  largeur: number | null;
+  hauteur: number | null;
 }

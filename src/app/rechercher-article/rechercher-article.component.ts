@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ArticleService} from '../services/article.service';
+import {MainService} from '../services/main.service';
+import {Magasin} from '../models/magasin.model';
 
 @Component({
   selector: 'app-rechercher-article',
@@ -8,15 +9,27 @@ import {ArticleService} from '../services/article.service';
 })
 export class RechercherArticleComponent implements OnInit {
   articles: any;
+  magasins: any;
   keyWords: string;
-  constructor(private articleService: ArticleService) {}
+  magasinSelectioner : Magasin;
+  constructor(private mainService: MainService) {}
 
-  search(keyWords: string) {
-    this.articleService.rechercher(keyWords).subscribe(articles => {
+  searchArticle(keyWords: string) {
+    this.mainService.rechercherArticle(keyWords).subscribe(articles => {
       this.articles = articles;
     });
   }
+
+  searchMagasin(keyWords: string) {
+    this.mainService.rechercherMagasin(keyWords).subscribe(magasins => {
+      this.magasins = magasins;
+    });
+  }
+  ajouterAuPanier() {
+  }
   ngOnInit() {
   }
-
+  selectMagasin(m: Magasin) {
+    this.magasinSelectioner = m;
+  }
 }
