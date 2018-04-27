@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class EventHandlerService {
+export class ArticleService {
 
   constructor(private http: HttpClient) {  }
   articles: Article[];

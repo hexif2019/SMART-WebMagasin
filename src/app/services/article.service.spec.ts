@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { EventHandlerService } from './article.service';
+import { ArticleService } from './article.service';
 
-describe('EventHandlerService', () => {
+describe('ArticleService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [EventHandlerService]
+      providers: [ArticleService]
     });
   });
 
-  it('should be created', inject([EventHandlerService], (service: EventHandlerService) => {
+  it('should be created', inject([ArticleService], (service: ArticleService) => {
     expect(service).toBeTruthy();
   }));
 });

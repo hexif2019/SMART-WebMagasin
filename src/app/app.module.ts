@@ -7,7 +7,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import {HttpClientModule} from '@angular/common/http';
 import {UserService} from "./services/user.service";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ResidanceService} from "./services/residance.service";
@@ -17,9 +16,9 @@ import { PageShopComponent } from './pages/page-shop/page-shop.component';
 import { PageBasketComponent } from './pages/page-basket/page-basket.component';
 import { PagePaymentComponent } from './pages/page-payment/page-payment.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { EventHandlerService } from './services/event-handler.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { RechercherArticleComponent } from './rechercher-article/rechercher-article.component';
+import {ArticleService} from './services/article.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -38,7 +37,8 @@ const appRoutes: Routes = [
     PageShopComponent,
     PageBasketComponent,
     PagePaymentComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RechercherArticleComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes,{ enableTracing: true }),
@@ -50,7 +50,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [EventHandlerService, UserService, ResidanceService],
+  providers: [UserService, ResidanceService, ArticleService],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule]
 })
