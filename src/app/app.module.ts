@@ -9,7 +9,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {HttpClientModule} from "@angular/common/http";
 import {UserService} from "./services/user.service";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ResidanceService} from "./services/residance.service";
 
 
 @NgModule({
@@ -23,9 +24,10 @@ import {FormsModule} from "@angular/forms";
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, ResidanceService],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule]
 })

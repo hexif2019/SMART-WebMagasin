@@ -1,38 +1,62 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {User} from "../modal/user";
+import {FormControl} from "@angular/forms";
+import {ResidanceService} from "../services/residance.service";
+import {Residence} from "../modal/residence";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
+  residances: Residence[] = [];
+
+  nom: string;
+  prenom: string;
   email: string;
   password: string;
+  residance: Residence;
 
   loadLogin = false;
-  msgError: string;
+  msgLoginError: string;
+  msgRegisterError: string;
   showRegister = false;
+
+  codepostal = new FormControl();
+  valideCp = false;
+  loadResidance = false;
 
   @Output() onLogin = new EventEmitter<User>();
 
-  constructor(private userSvice: UserService) { }
+  constructor(private userService: UserService,
+              private residanceService: ResidanceService) {
 
-  ngOnInit() {
+    this.codepostal.valueChanges.subscribe((value) => {
+      this.valideCp = /^[0-9]{5}$/.test(value);
+      if(this.valideCp){
+        this.loadResidance = true;
+        this.residanceService.findResidanceFormCodePostal(value).subscribe(residances => {
+            this.residances = residances;
+        });
+      }else{
+        this.residances = [];
+      }
+    });
   }
-
   login(){
     this.loadLogin = true;
-    this.userSvice.login(this.email,this.password)
+    this.userService.login(this.email,this.password)
 
       .subscribe(
         user =>{
+          console.log("LOGIN SUCCESS", user);
           this.onLogin.emit(user);
         },
         fail =>{
-          this.msgError = JSON.stringify(fail);
+          this.msgLoginError = JSON.stringify(fail);
         },
         ()=>{
           this.loadLogin = false;
@@ -45,22 +69,25 @@ export class LoginComponent implements OnInit {
 
   register(){
     this.loadLogin = true;
-    let user: User;
-    /*user={
-
+    let newUser: User = {
+      nom: this.nom,
+      prenom: this.prenom,
+      residence: this.residance,
+      email: this.email
     }
-    this.userSvice.register(this.username,this.password)
+    this.userService.register(newUser,this.password)
 
       .subscribe(
         user =>{
+          console.log("REGISTER SUCCESS", user);
           this.onLogin.emit(user);
         },
         fail =>{
-          this.msgError = JSON.stringify(fail);
+          this.msgRegisterError = (fail.msg) || JSON.stringify(fail);
         },
         ()=>{
           this.loadLogin = false;
         }
-      );*/
+      );
   }
 }

@@ -9,9 +9,9 @@ export class UserService {
   private user:User;
 
   constructor(private http: HttpClient) {
-    let localStorageUser = localStorage.getItem('currentUser');
-    if(localStorageUser){
-      this.user = JSON.parse(localStorageUser);
+    let token = localStorage.getItem('token');
+    if(token){
+      this.loadToken(token);
     }
   }
 
@@ -19,16 +19,18 @@ export class UserService {
     return this.user;
   }
 
-  login(username: string, password: string) {
-    //TODO ONAPI return this.http.post<User>('/api/authenticate', { username: username+"", password: password+"" })
-    return this.http.get<User>('/api/authenticate.json') //TODO RM ONAPI
-      .map(user => {
-        if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.user = user;
-        }
+  loadToken(token: string){
+    /*return this.http.post<User>('/api/authenticate', { email: email, password: password })
+    return this.http.get<any>('/api/loadUser')*/
+  }
 
-        return user;
+  login(email: string, password: string) {
+    return this.http.post<any>('/api/authenticate', { email: email, password: password })
+      .map(data => {
+        if (data && data.token) {
+          localStorage.setItem('token', JSON.stringify(data.token));
+        }
+        return data.user;
       });
 
   }
