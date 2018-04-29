@@ -1,9 +1,9 @@
 import {Residence} from "./residence";
 
 export class User{
+  id?: string;
   nom?: string;
   prenom?: string;
-  token?: string;
   residence?: Residence;
   email?: string;
 }

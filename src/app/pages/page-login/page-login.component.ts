@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-page-login',
@@ -8,16 +8,18 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class PageLoginComponent implements OnInit {
 
-  showRegister
+  showRegister: boolean;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.showRegister = this.route.snapshot.data['showRegister']
   }
 
   onLogin(){
-
+    console.log("goto /home");
+    this.router.navigateByUrl('/home');
   }
 
 }

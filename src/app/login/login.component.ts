@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UserService} from "../services/user.service";
-import {User} from "../modal/user";
+import {User} from "../models/user";
 import {FormControl} from "@angular/forms";
 import {ResidanceService} from "../services/residance.service";
-import {Residence} from "../modal/residence";
+import {Residence} from "../models/residence";
 
 @Component({
   selector: 'app-login',

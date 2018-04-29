@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {Residence} from "../modal/residence";
+import {Residence} from "../models/residence";
 
 @Injectable()
 export class ResidanceService {
