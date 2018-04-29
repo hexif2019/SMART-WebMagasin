@@ -1,6 +1,6 @@
 import {Component, TemplateRef} from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import {MainService} from './services/main.service';
+import {PanierService} from './services/panier.service';
 import {Article} from './models/article.model';
 
 @Component({

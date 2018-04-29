@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {MainService} from '../services/main.service';
 import {Magasin} from '../models/magasin.model';
+import {Article} from "../models/article.model";
+import {PanierService} from "../services/panier.service";
+import {UserService} from "../services/user.service";
+import {Commande} from "../models/commande";
 
 @Component({
   selector: 'app-rechercher-article',
@@ -8,27 +11,49 @@ import {Magasin} from '../models/magasin.model';
   styleUrls: ['./rechercher-article.component.scss']
 })
 export class RechercherArticleComponent implements OnInit {
-  articles: any;
-  magasins: any;
+  articles: Article[];
+  magasins: Magasin[];
   keyWords: string;
   magasinSelectioner : Magasin;
-  constructor(private mainService: MainService) {}
 
-  searchArticle(keyWords: string) {
-    this.mainService.rechercherArticle(keyWords).subscribe(articles => {
-      this.articles = articles;
-    });
+  panier: Commande;
+
+  constructor(
+    private panierService: PanierService,
+    private userService: UserService
+  ) {
+
   }
 
-  searchMagasin(keyWords: string) {
-    this.mainService.rechercherMagasin(keyWords).subscribe(magasins => {
-      this.magasins = magasins;
-    });
+  ajouterAuPanier(article: Article, qte: number) {
+    let user = this.userService.getUser();
+    this.panierService.addArticle(user.id, this.magasinSelectioner, article, qte).subscribe(
+      nouveauPagner => {},
+      error => this.msgError(JSON.stringify(error))
+    )
   }
-  ajouterAuPanier() {
-  }
+
   ngOnInit() {
+    let user = this.userService.getUser();
+    this.panierService.getMagasinsOfResidence(user.residence.id).subscribe(
+      magasins => this.magasins = magasins,
+      error => this.msgError(JSON.stringify(error))
+    );
+
+    this.panierService.getPagner(user.id).subscribe(
+      panier=> this.panier = panier,
+      error => this.msgError("Erreur du chargement du pagnier : " + JSON.stringify(error))
+    );
   }
+
+  msgError(msg: string){
+
+  }
+
+  msgOk(msg: string){
+
+  }
+
   selectMagasin(m: Magasin) {
     this.magasinSelectioner = m;
   }

@@ -2,6 +2,7 @@ import {Article} from './article.model';
 import {Coordonne} from './coordonne.model';
 
 export class Magasin {
+  id?: string;
   adresse?: string;
   description?: string;
   denomination?: string;

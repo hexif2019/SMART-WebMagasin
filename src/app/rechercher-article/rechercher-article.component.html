@@ -19,12 +19,6 @@
 <div class="wrap">
   <div class="menu">
       <div class="mini-menu">
-        <div >
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)] = "keyWords" name = "kwm">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchMagasin('asd')">Search</button>
-          </form>
-        </div>
         <div class="list-group">
           <a *ngFor="let m of magasins" href="javascript:void(0)" (click)="selectMagasin(m)" class="list-group-item list-group-item-action flex-column align-items-start" [ngClass]="{active:m === magasinSelectioner}" >
             <div class= "d-flex w-100 justify-content-between">
@@ -38,11 +32,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)] = "keyWords" name = "kwa">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="searchArticle('asd')">Search</button>
     </form>
   </div>
   <div class="items">
-      <div data-price="290" class="item" *ngFor="let a of articles">
+      <div data-price="290" class="item" *ngFor="let a of (articles | filter : keyWords)">
         <img style="max-width:100%;" src="{{a.img}}" />
         <div class="info">
           <h3>{{a.denomination}}</h3>

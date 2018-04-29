@@ -22,6 +22,8 @@ import {BrowserModule } from '@angular/platform-browser';
 import {NavbarComponent} from './navbar/navbar.component'
 import { AlertModule} from 'ngx-bootstrap';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
+import { FilterPipe } from './filter.pipe';
+import {PanierService} from "./services/panier.service";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -39,6 +41,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RechercherArticleComponent,
     NavbarComponent,
+
+    FilterPipe,
 
     PageLoginComponent,
     PageShopComponent,
@@ -58,7 +62,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService, ResidanceService, MainService],
+  providers: [UserService, ResidanceService, PanierService],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule]
 })
