@@ -48,7 +48,10 @@
               </div>
             </div>
             <div class="section" style="padding-bottom:20px;">
-              <button class="btn btn-success">Ajouter</button>
+              <div *ngIf="a.display.isBuyed" class="msg">
+                article ajouté
+              </div>
+              <button class="btn btn-success" (click)="ajouterAuPanier(a,a.nb)">Ajouter</button>
             </div>
           </div>
         </div>

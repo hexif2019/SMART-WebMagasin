@@ -10,4 +10,5 @@ export class Article {
   longeur?: number | null;
   largeur?: number | null;
   hauteur?: number | null;
+  display?: any;
 }

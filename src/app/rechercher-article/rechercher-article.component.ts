@@ -13,9 +13,8 @@ import {Commande} from "../models/commande";
 export class RechercherArticleComponent implements OnInit {
   articles: Article[];
   magasins: Magasin[];
-  magasinKeyWords: string;
-  articleKeyWords : string;
-  magasinSelectioner : Magasin;
+  magasinkeyWords: string;
+  magasinSelectioner: Magasin;
 
   panier: Commande;
 
@@ -28,10 +27,13 @@ export class RechercherArticleComponent implements OnInit {
 
   ajouterAuPanier(article: Article, qte: number) {
     let user = this.userService.getUser();
+    article.display.isBuyed = true;
     this.panierService.addArticle(user.id, this.magasinSelectioner, article, qte).subscribe(
-      nouveauPagner => {},
+      nouveauPagner => {
+
+      },
       error => this.msgError(JSON.stringify(error))
-    )
+    );
   }
 
   ngOnInit() {

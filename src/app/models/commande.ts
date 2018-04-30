@@ -2,10 +2,12 @@ import {Magasin} from "./magasin.model";
 import {User} from "./user";
 import {Residence} from "./residence";
 
-export class Commande{
+export class Commande {
   id?: string;
-  magasins?: Magasin[];
   etat?: string;
+  prix?: number;
+  magasins?: Magasin[];
+  userid: string;
   user?: User;
   residence?: Residence;
 }

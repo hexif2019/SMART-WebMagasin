@@ -83,6 +83,16 @@ export class PanierService {
       this.http.get<Magasin[]>('api/listMagasins.json'),
       this.http.get<Magasin[]>('api/getMagasinsOfResidence/${residenceid}')
     )
+      .map(magasins => {
+        magasins.forEach(magasin =>{
+           magasin.produits.forEach(produit => {
+             produit.display = {
+               isBuyed: false
+             };
+           });
+        });
+        return magasins;
+      });
   }
 
   public updatePanier(userid: string,panier: Commande,  eventName: string, eventMsg ?: string, eventData ?: any): Observable<Commande>{
@@ -131,7 +141,6 @@ export class PanierService {
           if(!magasinCommande){ //pas de magasin dans cette commande
             return observer.error("Cette article n'est plus dans votre pagnier");
           }
-
           let articleCommande: Article[] = _.remove(magasinCommande.produits,produit => (<Article>produit).denomination === article.denomination );
           if(!articleCommande.length){
             return observer.error("Cette article n'est plus dans votre pagnier");
