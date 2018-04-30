@@ -108,6 +108,8 @@ export class UserService {
   }
 
   onLogout(): Observable<User>{
+    localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
     return this.logoutObservable;
   }
 
