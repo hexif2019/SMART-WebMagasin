@@ -16,12 +16,14 @@
   },
   "magasins":[
     {
+      "id": "80001",
       "adresse": "110 Boulevard du 11 Novembre 1918, 69100 Villeurbanne",
       "description": "carrefour express",
       "denomination": "carrefour express",
       "email": "carrefour@carrefour.fr",
       "produits": [
         {
+          "id": "110001",
           "denomination": "CocaCola",
           "nb": 1,
           "prix": 100,
@@ -30,6 +32,7 @@
           "description": "a carbonated soft drink produced by The Coca-Cola Company"
         },
         {
+          "id": "110002",
           "denomination": "Pepsi",
           "nb": 1,
           "prix": 200,
@@ -54,6 +57,7 @@
       "mdp": "mdp",
       "produits": [
         {
+          "id": "110003",
           "denomination": "YY",
           "nb": 1,
           "prix": 100,
@@ -62,6 +66,7 @@
           "description": "a carbonated soft drink produced by The Coca-Cola Company"
         },
         {
+          "id": "110004",
           "denomination": "XX",
           "nb": 1,
           "prix": 200,

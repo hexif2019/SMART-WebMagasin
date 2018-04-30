@@ -17,13 +17,12 @@ import { PagePaymentComponent } from './pages/page-payment/page-payment.componen
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RechercherArticleComponent } from './rechercher-article/rechercher-article.component';
-import {MainService } from './services/main.service';
 import {BrowserModule } from '@angular/platform-browser';
 import {NavbarComponent} from './navbar/navbar.component'
 import { AlertModule} from 'ngx-bootstrap';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { FilterPipe } from './filter.pipe';
-import {PanierService} from "./services/panier.service";
+import {PanierService} from './services/panier.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},

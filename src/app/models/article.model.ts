@@ -1,4 +1,5 @@
 export class Article {
+  id?: string;
   denomination?: string;
   description?: string;
   nb?: number;

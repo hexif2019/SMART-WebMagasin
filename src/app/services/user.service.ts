@@ -19,6 +19,7 @@ export class UserService {
   constructor(
     private http: HttpClient,
   ){
+    window['wUserService'] = this;
     let token = localStorage.getItem('token');
     let userEmail = localStorage.getItem('userEmail');
     this.loginObservable = Observable.create(observer => {this.loginObserver = observer});
@@ -38,10 +39,11 @@ export class UserService {
       this.http.post<User>('/api/authenticateToken', { email: email, token: token })
     //);
     ret.subscribe(user => {
+      this.user = user;
+
       this.loginObserver.next(user);
       this.loginObserver.complete();
     });
-    this.loginObserver.complete();
     return ret;
   }
 
@@ -49,15 +51,18 @@ export class UserService {
     let ret = fakeapi(
       this.http.get<any>("/api/authenticate.json"),
       this.http.post<any>('/api/authenticate', { email: email, password: password })
-        .map(data => {
+    )
+      .map(data => {
 
-          if (data && data.token) {
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('userEmail', data.user.email);
-          }
-          return (<User>data.user);
-        })
-    );
+        if (data && data.token) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('userEmail', data.user.email);
+        }
+
+        this.user = data.user;
+
+        return this.user;
+      });
     ret.subscribe(user => {
       this.loginObserver.next(user);
       this.loginObserver.complete();
@@ -84,7 +89,10 @@ export class UserService {
             localStorage.setItem('token', data.token);
             localStorage.setItem('userEmail', data.user.email);
           }
-          return (<User>data.user);
+
+          this.user = data.user;
+
+          return this.user;
         })
     );
     ret.subscribe(user => {

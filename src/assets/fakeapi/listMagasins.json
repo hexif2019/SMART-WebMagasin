@@ -1,5 +1,6 @@
 [
   {
+    "id": "80001",
     "adresse": "110 Boulevard du 11 Novembre 1918, 69100 Villeurbanne",
     "description": "carrefour express",
     "denomination": "carrefour express",
@@ -29,6 +30,7 @@
     "position": "45.778632,4.871106"
   },
   {
+    "id": "80002",
     "adresse": "87 Avenue Félix Faure, 69003 Lyon",
     "description": "Auchan",
     "denomination": "Auchan",

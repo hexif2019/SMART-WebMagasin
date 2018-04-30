@@ -1,4 +1,5 @@
 [{
+  "id": "80001",
   "denomination": "CocaCola",
   "description": "a carbonated soft drink produced by The Coca-Cola Company",
   "nb": 1,
@@ -7,6 +8,7 @@
   "icon": "http://southeasternbeers.co.uk/291-thickbox_default/330ml-coke-icon.jpg"
   },
   {
+    "id": "80001",
     "denomination": "Pepsi",
     "description": "a carbonated soft drink produced",
     "nb": 1,
