@@ -34,10 +34,10 @@ export class UserService {
   }
 
   loadToken(token: string, email: string): Observable<User>{
-    let ret = //fakeapi(
-      //this.http.get<any>("/api/authenticate.json"),
+    let ret = fakeapi(
+      this.http.get<any>("/api/authenticate.json"),
       this.http.post<User>('/api/authenticateToken', { email: email, token: token })
-    //);
+    );
     ret.subscribe(user => {
       this.user = user;
 
