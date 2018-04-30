@@ -12,7 +12,7 @@
         "nb": 1,
         "prix": 100,
         "poids": 500,
-        "icon": "http://southeasternbeers.co.uk/291-thickbox_default/330ml-coke-icon.jpg",
+        "img": "http://southeasternbeers.co.uk/291-thickbox_default/330ml-coke-icon.jpg",
         "description": "a carbonated soft drink produced by The Coca-Cola Company"
       },
       {
@@ -20,7 +20,7 @@
         "nb": 1,
         "prix": 200,
         "poids": 500,
-        "icon": "http://icons.iconarchive.com/icons/michael/coke-pepsi/128/Pepsi-Can-icon.png",
+        "img": "http://icons.iconarchive.com/icons/michael/coke-pepsi/128/Pepsi-Can-icon.png",
         "description": "a carbonated soft drink produced"
       }
     ],
@@ -42,7 +42,7 @@
         "nb": 1,
         "prix": 100,
         "poids": 500,
-        "icon": "http://southeasternbeers.co.uk/291-thickbox_default/330ml-coke-icon.jpg",
+        "img": "http://southeasternbeers.co.uk/291-thickbox_default/330ml-coke-icon.jpg",
         "description": "a carbonated soft drink produced by The Coca-Cola Company"
       },
       {
@@ -50,7 +50,7 @@
         "nb": 1,
         "prix": 200,
         "poids": 500,
-        "icon": "http://icons.iconarchive.com/icons/michael/coke-pepsi/128/Pepsi-Can-icon.png",
+        "img": "http://icons.iconarchive.com/icons/michael/coke-pepsi/128/Pepsi-Can-icon.png",
         "description": "a carbonated soft drink produced"
       }
     ],

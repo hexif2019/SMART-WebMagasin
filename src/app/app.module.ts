@@ -23,6 +23,7 @@ import { AlertModule} from 'ngx-bootstrap';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { FilterPipe } from './filter.pipe';
 import {PanierService} from './services/panier.service';
+import { PanierComponent } from './panier/panier.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
     PagePaymentComponent,
     PageNotFoundComponent,
     PageHomeComponent,
+    PanierComponent,
   ],
   imports: [
     AlertModule,

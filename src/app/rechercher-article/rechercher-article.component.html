@@ -1,122 +1,60 @@
-<!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-&lt;!&ndash;&#45;&#45;&#45;&#45; Include the above in your HEAD tag &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <title>Document</title>
-</head>
-<body>-->
-<div class="wrap">
-  <div class="menu">
-      <div class="mini-menu">
-        <div class="list-group">
-          <a *ngFor="let m of magasins" href="javascript:void(0)" (click)="selectMagasin(m)" class="list-group-item list-group-item-action flex-column align-items-start" [ngClass]="{active:m === magasinSelectioner}" >
-            <div class= "d-flex w-100 justify-content-between">
-              <h5 class="mb-1">{{m.denomination}}</h5>
-            </div>
-            <p class="mb-1">{{m.description}}</p>
-          </a>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="menu">
+        <div>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+            [(ngModel)]="magasinKeyWords" name="kwm">
+          </form>
         </div>
-      </div>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)] = "keyWords" name = "kwa">
-    </form>
-  </div>
-  <div class="items">
-      <div data-price="290" class="item" *ngFor="let a of (articles | filter : keyWords)">
-        <img style="max-width:100%;" src="{{a.img}}" />
-        <div class="info">
-          <h3>{{a.denomination}}</h3>
-          <p class="descroption">Description: {{a.description}}</p>
-          <h5>{{a.prix/100*a.nb}} euros</h5>
-        </div>
-        <div class="section" style="padding-bottom:20px;">
-          <div class = "form-group row">
-            <label for="number-input" class = "col-4 col-form-label">Number</label>
-            <div class="col-8">
-              <input [(ngModel)]="a.nb" type="number" class = "form-control" value="1" id = "number-input" min = "0" max = "99" step="1" />
-            </div>
+        <div class="magasins">
+          <div class="list-group">
+            <a *ngFor="let m of magasins | filter : magasinKeyWords" href="javascript:void(0)" (click)="selectMagasin(m)" class="list-group-item list-group-item-action flex-column align-items-start" [ngClass]="{active:m === magasinSelectioner}" >
+              <div class= "d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{m.denomination}}</h5>
+              </div>
+              <p class="mb-1">{{m.description}}</p>
+            </a>
           </div>
-        </div>
-        <div class="section" style="padding-bottom:20px;">
-          <button class="btn btn-success">Ajouter</button>
         </div>
       </div>
     </div>
+
+    <div class="col-md-8">
+      <div class="items">
+        <div *ngIf="magasinSelectioner">
+          <div>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                     [(ngModel)]="articleKeyWords" name="kwa">
+            </form>
+          </div>
+          <div data-price="290" class="item" *ngFor="let a of magasinSelectioner.produits | filter : articleKeyWords">
+            <img style="max-width:100%;" src="{{a.img}}"/>
+            <div class="info">
+              <h3>{{a.denomination}}</h3>
+              <p class="descroption">Description: {{a.description}}</p>
+              <h5>{{a.prix/100*a.nb}} euros</h5>
+            </div>
+            <div class="section" style="padding-bottom:20px;">
+              <div class="form-group row">
+                <label for="number-input" class="col-4 col-form-label">Number</label>
+                <div class="col-8">
+                  <input [(ngModel)]="a.nb" type="number" class="form-control" value="1" id="number-input" min="0"
+                         max="99"
+                         step="1"/>
+                </div>
+              </div>
+            </div>
+            <div class="section" style="padding-bottom:20px;">
+              <button class="btn btn-success">Ajouter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
-<!--</body>-->
-
-<!--<script
-src="https://code.jquery.com/jquery-3.2.1.min.js"
-integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-crossorigin="anonymous"></script>-->
-
-
-
-
-<!--
-&lt;!&ndash;Menu&ndash;&gt;
-<script type="text/javascript">
-  $(document).ready(function () {
-    $(".sub > a").click(function() {
-      var ul = $(this).next(),
-        clone = ul.clone().css({"height":"auto"}).appendTo(".mini-menu"),
-        height = ul.css("height") === "0px" ? ul[0].scrollHeight + "px" : "0px";
-      clone.remove();
-      ul.animate({"height":height});
-      return false;
-    });
-    $('.mini-menu > ul > li > a').click(function(){
-      $('.sub a').removeClass('active');
-      $(this).addClass('active');
-    }),
-      $('.sub ul li a').click(function(){
-        $('.sub ul li a').removeClass('active');
-        $(this).addClass('active');
-      });
-  });
-</script>
-<script src="script.js" ></script>
-&lt;!&ndash;</html>&ndash;&gt;
-<script>
-  $( function() {
-    $( "#slider-range" ).slider({
-      range: true,
-      min: 0,
-      max: 1000,
-      values: [ 190, 728 ],
-      slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-        var mi = ui.values[0];
-        var mx = ui.values[1];
-        filterSystem(mi, mx);
-      }
-    });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-  } );
-
-
-  function filterSystem(minPrice, maxPrice) {
-    $(".items div.item").hide().filter(function () {
-      var price = parseInt($(this).data("price"), 10);
-      return price >= minPrice && price <= maxPrice;
-    }).show();
-  }
-
-  //   $( "#slider-range" ).on( "slidechange", function( event, ui ) {
-  //     console.log(ui.value);
-  // } );
-</script>-->
