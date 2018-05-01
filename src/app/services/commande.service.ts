@@ -10,39 +10,39 @@ export class CommandeService {
 
   }
 
-  private getStatusDisplayCommande(status: string): any{
-    switch (status){
-      case 'EDITION': return {etat: "danger", title: "Pagnier!"}; // (nomrmalement imposible)
+  private getStatusDisplayCommande(statut: string): any{
+    switch (statut){
+      case 'EDITION': return {etat: "danger", title: "Panier!"}; // (nomrmalement imposible)
       case 'PAYEMENT_EFFECTUE':
-      case 'ATTENTE_CONFIRMATION_MAGASIN': return {etat: "success", title: "En attante de la confiramation des magasins", titleOne : "En attante de la confiramation du magasin"};
-      case 'ANNULATION_CLIENT': return {etat: "danger", title: "Vous avez annuler la commande", titleOne : "Vous avez annuler la commande" };
-      case 'ANNULATION_SYSTEM': return {etat: "danger", title: "Votre commande ne peut pas étre livrai a l'heur voulu", titleOne : "Votre commande ne peut pas étre livrai a l'heur voulu" };
+      case 'ATTENTE_CONFIRMATION_MAGASIN': return {etat: "success", title: "En attente de la confirmation des magasins", titleOne : "En attente de la confirmation du magasin"};
+      case 'ANNULATION_CLIENT': return {etat: "danger", title: "Vous avez annulé la commande", titleOne : "Vous avez annulé la commande" };
+      case 'ANNULATION_SYSTEM': return {etat: "danger", title: "Votre commande ne peut pas être livrée à l'heure voulu", titleOne : "Votre commande ne peut pas être livrée à l'heure voulu" };
       case 'ANNULATION_MAGASIN': return {etat: "danger", title: "Les magasins n'ont pas pus fournir les articles voulus", titleOne: "Le magasin n'a pas pus fournir les articles voulus" };
-      case 'VALIDE_MAGASINS_MAIS_MODIF': return {etat: "warning", title: "Cetins aticles de votre commande on étais modifier par un magasin", titleOne: "Cetins aticles de votre commande on étais modifier par le magasin" };
-      case 'ATTRIBUE_A_COURSIER': return {etat: "success", title: "Votre commande vas bientôt arriver"};
-      case 'EN_COURS_DE_LIVRAISON': return {etat: "success", title: "Votre commande est en chemain"};
-      case 'DANS_CASIER': return {etat: "success", title: "Votre commande vous attand"};
-      case 'RECUPERE_CLIENT': return {etat: "success", title: "Terminer"};
-      case 'CASIER_TIMEOUT': return {etat: "danger", title: "Vous n'avais pas recuperer votre commande!"};
-      default: return {etat: "danger", title: "Unknowd! : " + (status || "undefined")}
+      case 'VALIDE_MAGASINS_MAIS_MODIF': return {etat: "warning", title: "Certains aticles de votre commande on était modifié par un magasin", titleOne: "Certains aticles de votre commande on était modifié par le magasin" };
+      case 'ATTRIBUE_A_COURSIER': return {etat: "success", title: "Votre commande va bientôt arrivée"};
+      case 'EN_COURS_DE_LIVRAISON': return {etat: "success", title: "Votre commande est en chemin"};
+      case 'DANS_CASIER': return {etat: "success", title: "Votre commande vous attend"};
+      case 'RECUPERE_CLIENT': return {etat: "success", title: "Terminée"};
+      case 'CASIER_TIMEOUT': return {etat: "danger", title: "Vous n'avais pas récuperé votre commande!"};
+      default: return {etat: "danger", title: "Unknowd! : " + (statut || "undefined")}
     }
   }
 
-  private getStatusDisplayCommandeMagasin(status: string): any{
-    switch (status){
-      case 'EDITION': return {etat: "danger", title: "Pagnier!"}; // (nomrmalement imposible)
+  private getStatusDisplayCommandeMagasin(statut: string): any{
+    switch (statut){
+      case 'EDITION': return {etat: "danger", title: "Panier!"}; // (nomrmalement imposible)
       case 'PAYEMENT_EFFECTUE':
-      case 'ATTENTE_CONFIRMATION_MAGASIN': return {etat: "warning", title: "Attent de confirmation"};
-      case 'ANNULATION_CLIENT': return {etat: "danger", title: "annuler" };
-      case 'ANNULATION_SYSTEM': return {etat: "danger", title: "annuler"};
-      case 'ANNULATION_MAGASIN': return {etat: "danger", title: "annuler par le magasin"};
+      case 'ATTENTE_CONFIRMATION_MAGASIN': return {etat: "warning", title: "Attente de confirmation"};
+      case 'ANNULATION_CLIENT': return {etat: "danger", title: "Annulée" };
+      case 'ANNULATION_SYSTEM': return {etat: "danger", title: "Annulée"};
+      case 'ANNULATION_MAGASIN': return {etat: "danger", title: "Annulée par le magasin"};
       case 'VALIDE_MAGASINS_MAIS_MODIF': return {etat: "warning", title: "Modifier"};
-      case 'ATTRIBUE_A_COURSIER': return {etat: "success", title: "en attant du livreur"};
-      case 'EN_COURS_DE_LIVRAISON': return {etat: "success", title: "en livreson"};
-      case 'DANS_CASIER': return {etat: "success", title: "Livrer"};
-      case 'RECUPERE_CLIENT': return {etat: "success", title: "Livrer"};
-      case 'CASIER_TIMEOUT': return {etat: "success", title: "Livrer!"};
-      default: return {etat: "danger", title: "Unknowd! : " + (status || "undefined")}
+      case 'ATTRIBUE_A_COURSIER': return {etat: "success", title: "en attente du livreur"};
+      case 'EN_COURS_DE_LIVRAISON': return {etat: "success", title: "en livraison"};
+      case 'DANS_CASIER': return {etat: "success", title: "Livrée"};
+      case 'RECUPERE_CLIENT': return {etat: "success", title: "Livrée"};
+      case 'CASIER_TIMEOUT': return {etat: "success", title: "Livrée"};
+      default: return {etat: "danger", title: "Unknowd! : " + (statut || "undefined")}
     }
   }
 
