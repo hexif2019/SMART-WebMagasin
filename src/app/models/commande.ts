@@ -10,5 +10,6 @@ export class Commande {
   userid: string;
   user?: User;
   residence?: Residence;
+  display?: any;
 }
 

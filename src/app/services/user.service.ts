@@ -5,6 +5,7 @@ import {User} from '../models/user';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import {fakeapi} from "./fakeapi";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Injectable()
 export class UserService {
@@ -15,8 +16,13 @@ export class UserService {
   private logoutObservable: Observable<User>;
   private loginObserver: Observer<User>;
   private logoutObserver: Observer<User>;
+  private tokenObservable: Observable<User>;
+
+  private tokenLoading = false;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private http: HttpClient,
   ){
     window['wUserService'] = this;
@@ -25,25 +31,51 @@ export class UserService {
     this.loginObservable = Observable.create(observer => {this.loginObserver = observer});
     this.logoutObservable = Observable.create(observer => {this.logoutObserver = observer});
     if(token && userEmail){
-      this.loadToken(token, userEmail);
+      this.tokenObservable = this.loadToken(token, userEmail);
     }
+  }
+
+  private forceLogin(){
+    this.router.navigateByUrl('/login');
   }
 
   getUser(): User{
     return this.user;
   }
 
-  loadToken(token: string, email: string): Observable<User>{
-    let ret = fakeapi(
-      this.http.get<any>("/api/authenticate.json"),
-      this.http.post<User>('/api/authenticateToken', { email: email, token: token })
-    );
-    ret.subscribe(user => {
-      this.user = user;
+  requirLogin(): Promise<User>{
+    return new Promise<User>(executor => {
+      if(this.user){
+        executor(this.user);
+      }else if(this.tokenLoading){
+        this.tokenObservable.subscribe(
+          user => {
+            executor(user);
+          },
+          error => this.forceLogin()
+        )
+      }else{
+        this.forceLogin();
+      }
+    })
+  }
 
-      this.loginObserver.next(user);
-      this.loginObserver.complete();
-    });
+  loadToken(token: string, email: string): Observable<User>{
+    this.tokenLoading = true;
+    let ret = fakeapi(
+      this.http.get<User>("/api/authenticate.json"),
+      this.http.post<User>('/api/authenticateToken', { email: email, token: token })
+    ).map(
+      user => {
+        this.user = user;
+
+        this.tokenLoading = false;
+
+        this.loginObserver.next(user);
+        this.loginObserver.complete();
+        return user;
+      });
+    ret.subscribe(_=> this.tokenLoading = false );
     return ret;
   }
 

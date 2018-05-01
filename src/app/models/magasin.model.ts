@@ -3,6 +3,7 @@ import {Coordonne} from './coordonne.model';
 
 export class Magasin {
   id?: string;
+  etat?: string;
   adresse?: string;
   description?: string;
   denomination?: string;
@@ -14,4 +15,5 @@ export class Magasin {
   img?: string;
   position?: Coordonne;
   distance?: Number;
+  display?: any;
 }

@@ -21,9 +21,11 @@ import {BrowserModule } from '@angular/platform-browser';
 import {NavbarComponent} from './navbar/navbar.component'
 import { AlertModule} from 'ngx-bootstrap';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
-import { FilterPipe } from './filter.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 import {PanierService} from './services/panier.service';
 import { PanierComponent } from './panier/panier.component';
+import { PrixPipe } from './pipes/prix.pipe';
+import {CommandeService} from "./services/commande.service";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     PageHomeComponent,
     PanierComponent,
+    PrixPipe,
   ],
   imports: [
     AlertModule,
@@ -63,7 +66,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService, ResidanceService, PanierService],
+  providers: [UserService, ResidanceService, PanierService, CommandeService],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule]
 })

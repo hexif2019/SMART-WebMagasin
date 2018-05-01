@@ -29,6 +29,14 @@ export class PanierService {
   private panierObserver: Observer<PanierEvent>;
   private panierObservable: Observable<PanierEvent>;
 
+  constructor(private http: HttpClient) {
+    this.panierObservable = (<Observable<PanierEvent>> Observable.create(
+      observer => this.panierObserver = observer
+    )).map(
+      panierEvent => (this.panier = panierEvent.panier) && panierEvent
+    );
+  }
+
   public getCurrentPanier(): Commande{
     return this.panier;
   }
@@ -52,13 +60,6 @@ export class PanierService {
     return this.panierObservable;
   }
 
-  constructor(private http: HttpClient) {
-    this.panierObservable = (<Observable<PanierEvent>> Observable.create(
-      observer => this.panierObserver = observer
-    )).map(
-      panierEvent => (this.panier = panierEvent.panier) && panierEvent
-    );
-  }
 
   public getPagner(userid: string): Observable<Commande>{
     return fakeapi(
