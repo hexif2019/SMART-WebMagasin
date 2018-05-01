@@ -37,16 +37,17 @@ export class RechercherArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    let user = this.userService.getUser();
-    this.panierService.getMagasinsOfResidence(user.residence.id).subscribe(
-      magasins => this.magasins = magasins,
-      error => this.msgError(JSON.stringify(error))
-    );
+    this.userService.requirLogin().then(user => {
+      this.panierService.getMagasinsOfResidence(user.residence.id).subscribe(
+        magasins => this.magasins = magasins,
+        error => this.msgError(JSON.stringify(error))
+      );
 
-    this.panierService.getPagner(user.id).subscribe(
-      panier=> this.panier = panier,
-      error => this.msgError("Erreur du chargement du pagnier : " + JSON.stringify(error))
-    );
+      this.panierService.getPagner(user.id).subscribe(
+        panier=> this.panier = panier,
+        error => this.msgError("Erreur du chargement du pagnier : " + JSON.stringify(error))
+      );
+    });
   }
 
   msgError(msg: string){

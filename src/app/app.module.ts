@@ -23,7 +23,6 @@ import { AlertModule} from 'ngx-bootstrap';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import {PanierService} from './services/panier.service';
-import { PanierComponent } from './panier/panier.component';
 import { PrixPipe } from './pipes/prix.pipe';
 import {CommandeService} from "./services/commande.service";
 
@@ -52,7 +51,6 @@ const appRoutes: Routes = [
     PagePaymentComponent,
     PageNotFoundComponent,
     PageHomeComponent,
-    PanierComponent,
     PrixPipe,
   ],
   imports: [

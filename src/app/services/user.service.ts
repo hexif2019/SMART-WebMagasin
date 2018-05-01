@@ -72,7 +72,6 @@ export class UserService {
         this.tokenLoading = false;
 
         this.loginObserver.next(user);
-        this.loginObserver.complete();
         return user;
       });
     ret.subscribe(_=> this.tokenLoading = false );
@@ -97,8 +96,6 @@ export class UserService {
       });
     ret.subscribe(user => {
       this.loginObserver.next(user);
-      this.loginObserver.complete();
-
     });
     return ret;
   }
@@ -107,8 +104,8 @@ export class UserService {
     localStorage.removeItem('token');
     localStorage.removeItem('userEmail');
     this.logoutObserver.next(this.user);
-    this.logoutObserver.complete();
     delete this.user;
+    this.router.navigateByUrl('/login');
   }
 
   register(user: User, password: string): Observable<User>{
@@ -129,7 +126,6 @@ export class UserService {
     );
     ret.subscribe(user => {
       this.loginObserver.next(user);
-      this.loginObserver.complete();
 
     });
     return ret;
