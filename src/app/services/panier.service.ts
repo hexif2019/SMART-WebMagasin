@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Article } from '../models/article.model';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Observer} from 'rxjs/';
+import {Observable, Observer, Subject} from 'rxjs/';
 import 'rxjs/add/operator/map';
 import {Residence} from "../models/residence";
 import {Magasin} from "../models/magasin.model";
@@ -26,14 +26,12 @@ export class PanierEvent{
 export class PanierService {
 
   private panier : Commande;
-  private panierObserver: Observer<PanierEvent>;
-  private panierObservable: Observable<PanierEvent>;
+  private panierSubject: Subject<PanierEvent>;
 
   constructor(private http: HttpClient) {
-    this.panierObservable = (<Observable<PanierEvent>> Observable.create(
-      observer => this.panierObserver = observer
-    )).map(
-      panierEvent => (this.panier = panierEvent.panier) && panierEvent
+    this.panierSubject = new Subject<PanierEvent>();
+    this.panierSubject.subscribe(
+      panierEvent => this.panier = panierEvent.panier
     );
   }
 
@@ -42,7 +40,7 @@ export class PanierService {
   }
 
   public setPanier(panier: Commande,  eventName: string, eventMsg ?: string, eventData ?: any): void{
-    this.panierObserver.next(
+    this.panierSubject.next(
       {
         oldPagnier: this.panier,
         panier: panier,
@@ -53,11 +51,10 @@ export class PanierService {
         }
       }
     );
-    this.panierObserver.complete();
   }
 
   public onChangePanier(): Observable<PanierEvent>{
-    return this.panierObservable;
+    return this.panierSubject;
   }
 
 
