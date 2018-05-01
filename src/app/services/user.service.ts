@@ -6,16 +6,15 @@ import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import {fakeapi} from "./fakeapi";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class UserService {
 
   private user:User;
 
-  private loginObservable: Observable<User>;
-  private logoutObservable: Observable<User>;
-  private loginObserver: Observer<User>;
-  private logoutObserver: Observer<User>;
+  private loginSubject: Subject<User>;
+  private logoutSubject: Subject<User>;
   private tokenObservable: Observable<User>;
 
   private tokenLoading = false;
@@ -28,8 +27,8 @@ export class UserService {
     window['wUserService'] = this;
     let token = localStorage.getItem('token');
     let userEmail = localStorage.getItem('userEmail');
-    this.loginObservable = Observable.create(observer => {this.loginObserver = observer});
-    this.logoutObservable = Observable.create(observer => {this.logoutObserver = observer});
+    this.loginSubject = new Subject<User>();
+    this.logoutSubject = new Subject<User>();
     if(token && userEmail){
       this.tokenObservable = this.loadToken(token, userEmail);
     }
@@ -71,7 +70,7 @@ export class UserService {
 
         this.tokenLoading = false;
 
-        this.loginObserver.next(user);
+        this.loginSubject.next(user);
         return user;
       });
     ret.subscribe(_=> this.tokenLoading = false );
@@ -95,7 +94,8 @@ export class UserService {
         return this.user;
       });
     ret.subscribe(user => {
-      this.loginObserver.next(user);
+      console.log("ret.subscribe");
+      this.loginSubject.next(user);
     });
     return ret;
   }
@@ -103,7 +103,7 @@ export class UserService {
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('userEmail');
-    this.logoutObserver.next(this.user);
+    this.logoutSubject.next(this.user);
     delete this.user;
     this.router.navigateByUrl('/login');
   }
@@ -125,20 +125,20 @@ export class UserService {
         })
     );
     ret.subscribe(user => {
-      this.loginObserver.next(user);
+      this.loginSubject.next(user);
 
     });
     return ret;
   }
 
   onLogin(): Observable<User>{
-    return this.loginObservable;
+    return this.loginSubject;
   }
 
   onLogout(): Observable<User>{
     localStorage.removeItem('token');
     localStorage.removeItem('userEmail');
-    return this.logoutObservable;
+    return this.logoutSubject;
   }
 
 }

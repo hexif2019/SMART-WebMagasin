@@ -16,13 +16,18 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private userService: UserService
   ) {
-    userService.onLogin().subscribe(user => this.user = user);
-    userService.onLogout().subscribe(user => this.user = null);
-    this.user = userService.getUser();
   }
 
   ngOnInit() {
-
+    this.userService.onLogin().subscribe(user => {
+      this.user = user;
+      console.log("nav user login!");
+    });
+    this.userService.onLogout().subscribe(user => {
+      this.user = null;
+      console.log("nav user logout!");
+    });
+    this.user = this.userService.getUser();
   }
 
   logout(){

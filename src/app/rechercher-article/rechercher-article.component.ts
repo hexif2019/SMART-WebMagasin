@@ -13,7 +13,8 @@ import {Commande} from "../models/commande";
 export class RechercherArticleComponent implements OnInit {
   articles: Article[];
   magasins: Magasin[];
-  magasinkeyWords: string;
+  magasinKeyWords: any;
+  articleKeyWords: any;
   magasinSelectioner: Magasin;
 
   panier: Commande;
