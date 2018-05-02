@@ -1,26 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
-      <div class="menu">
-        <div>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-            [(ngModel)]="magasinKeyWords" name="kwm">
-          </form>
-        </div>
-        <div class="magasins">
-          <div class="list-group">
-            <a *ngFor="let m of magasins | filter : magasinKeyWords" href="javascript:void(0)" (click)="selectMagasin(m)" class="list-group-item list-group-item-action flex-column align-items-start" [ngClass]="{active:m === magasinSelectioner}" >
-              <div class= "d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{m.denomination}}</h5>
-              </div>
-              <p class="mb-1">{{m.description}}</p>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <h1 class="entry-title"><span>Mes produits</span></h1>
     <div class="col-md-8">
       <div class="items">
         <div *ngIf="magasinSelectioner">
@@ -51,7 +31,7 @@
               <div *ngIf="a.display.isBuyed" class="msg">
                 article ajouté
               </div>
-              <button class="btn btn-success" (click)="ajouterAuPanier(a,a.nb)">Ajouter</button>
+              <button class="btn btn-default" (click)="modifier(a)">Ajouter</button>
             </div>
           </div>
         </div>

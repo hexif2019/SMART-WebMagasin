@@ -59,7 +59,4 @@ export class RechercherArticleComponent implements OnInit {
 
   }
 
-  selectMagasin(m: Magasin) {
-    this.magasinSelectioner = m;
-  }
 }

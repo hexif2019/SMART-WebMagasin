@@ -1,0 +1,97 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <section>
+        <h1 class="entry-title"><span>Publier un nouveau article</span></h1>
+        <hr>
+        <form (ngSubmit)="register()" class="form-horizontal" method="post" name="publication" id="publication" enctype="multipart/form-data">
+          <div class="form-group">
+            <label class="control-label col-sm-3">Dénomination <span class="text-danger">*</span></label>
+            <div class="col-md-8 col-sm-9">
+              <input [(ngModel)]="denomination" type="text" class="form-control" name="denomination"
+                     placeholder="Taper le nom d'article" value="">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-3">Prix <span class="text-danger">*</span></label>
+            <div class="col-md-5 col-sm-8">
+              <input [(ngModel)]="prix" type="number" class="form-control" name="prix" id="password"
+                     placeholder="Le prix en centième" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Poids <span class="text-danger">*</span></label>
+            <div class="col-md-5 col-sm-8">
+              <input [(ngModel)]="poids" type="number" class="form-control" name="poids" id="poids"
+                     placeholder="Le prix en gramme" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Image <br>
+              <small>(optional)</small>
+            </label>
+            <div class="col-md-5 col-sm-8">
+              <div class="input-group"><span class="input-group-addon" id="file_upload"><i
+                class="glyphicon glyphicon-upload"></i></span>
+                <input [(ngModel)]="img" type="file" name="file_nm" id="file_nm" class="form-control upload"
+                       placeholder=""
+                       aria-describedby="file_upload">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Volume <br>
+              <small>(optional)</small>
+            </label>
+            <div class="col-md-5 col-sm-8">
+              <input [(ngModel)]="volume" type="number" class="form-control" name="volume" id="volume">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Longeur <br>
+              <small>(optional)</small>
+            </label>
+            <div class="col-md-5 col-sm-8">
+              <input [(ngModel)]="longeur" type="number" class="form-control" name="longeur" id="longeur">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Largeur <br>
+              <small>(optional)</small>
+            </label>
+            <div class="col-md-5 col-sm-8">
+              <input [(ngModel)]="largeur" type="number" class="form-control" name="largeur" id="largeur">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Hauteur <br>
+              <small>(optional)</small>
+            </label>
+            <div class="col-md-5 col-sm-8">
+              <input [(ngModel)]="hauteur" type="number" class="form-control" name="hauteur" id="hauteur">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Description <br>
+              <small>(optional)</small>
+            </label>
+            <div class="col-md-5 col-sm-8">
+              <textarea [(ngModel)]="description" cols="50" rows="10" name="description" id="description"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-offset-3 col-xs-10">
+              <input name="Submit" type="submit" value="Publier" class="btn btn-primary">
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>

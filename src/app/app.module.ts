@@ -11,12 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResidanceService} from './services/residance.service';
 import { RouterModule, Routes } from '@angular/router';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
-import { PageShopComponent } from './pages/page-shop/page-shop.component';
 import { PageBasketComponent } from './pages/page-basket/page-basket.component';
 import { PagePaymentComponent } from './pages/page-payment/page-payment.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RechercherArticleComponent } from './rechercher-article/rechercher-article.component';
 import {BrowserModule } from '@angular/platform-browser';
 import {NavbarComponent} from './navbar/navbar.component'
 import { AlertModule} from 'ngx-bootstrap';
@@ -25,33 +23,40 @@ import { FilterPipe } from './pipes/filter.pipe';
 import {PanierService} from './services/panier.service';
 import { PrixPipe } from './pipes/prix.pipe';
 import {CommandeService} from "./services/commande.service";
+import { PagePublicationComponent } from './pages/page-publication/page-publication.component';
+import {PublicationService} from "./services/publication.service";
+import {PageShopComponent} from "./pages/page-shop/page-shop.component";
+import {RechercherArticleComponent} from "./rechercher-article/rechercher-article.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: PageLoginComponent, data: { showRegister: false } },
   { path: 'register', component: PageLoginComponent, data: { showRegister: true }  },
   { path: 'home', component: PageHomeComponent},
-  { path: 'shop', component: PageShopComponent},
   { path: 'basket', component: PageBasketComponent},
   { path: 'payment', component: PagePaymentComponent },
+  { path: 'publication', component: PagePublicationComponent },
+  { path: 'shop', component: PageShopComponent },
+  { path: 'recherche-article', component: RechercherArticleComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RechercherArticleComponent,
     NavbarComponent,
 
     FilterPipe,
 
     PageLoginComponent,
-    PageShopComponent,
     PageBasketComponent,
     PagePaymentComponent,
     PageNotFoundComponent,
     PageHomeComponent,
     PrixPipe,
+    PagePublicationComponent,
+    RechercherArticleComponent,
+    PageShopComponent
   ],
   imports: [
     AlertModule,
@@ -64,7 +69,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService, ResidanceService, PanierService, CommandeService],
+  providers: [UserService, ResidanceService, PanierService, CommandeService, PublicationService],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule]
 })
