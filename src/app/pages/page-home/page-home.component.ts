@@ -31,10 +31,12 @@ export class PageHomeComponent implements OnInit {
 
   refreshCommandes(){
     console.log("refresh!");
-    this.marchandService.requirLogin().then(marchand =>{
-      _.assign(this.marchand,marchand);
-      this.currentCommandes = this.marchand.commandes;
-    });
+    if(this.marchand){
+      this.marchandService.refreshMarchand(this.marchand.id).subscribe(marchand=>{
+        _.assign(this.marchand,marchand);
+        this.currentCommandes = this.marchand.commandes;
+      })
+    }
   }
 
   valider(idCommande: string){

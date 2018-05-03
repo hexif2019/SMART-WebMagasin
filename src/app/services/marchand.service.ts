@@ -109,6 +109,15 @@ export class MarchandService {
     this.router.navigateByUrl('/login');
   }
 
+  refreshMarchand(idMarchand: string): Observable<Marchand>{
+    let ret = fakeapi(
+      this.http.get<any>("/api/marchand.json"),
+      this.http.get<any>('/api/getMarchand'+idMarchand)
+    )
+    ret.subscribe();
+    return ret;
+  }
+
   register(marchand: Marchand, password: string): Observable<Marchand>{
     let ret = fakeapi(
       this.http.get<any>("/api/authenticateMarchand.json"),
