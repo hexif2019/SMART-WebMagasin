@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Article} from "../../models/article.model";
 import {MarchandService} from "../../services/marchand.service";
 import {ProduitsService} from "../../services/produits.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-page-modification',
@@ -13,7 +13,7 @@ export class PageModificationComponent implements OnInit {
 
   article: Article;
 
-  constructor(private route: ActivatedRoute, private marchandService: MarchandService, private produitsService: ProduitsService) { }
+  constructor(private router: Router,private route: ActivatedRoute, private marchandService: MarchandService, private produitsService: ProduitsService) { }
 
   ngOnInit(){
     this.marchandService.requirLogin().then(marchand => {
@@ -29,7 +29,9 @@ export class PageModificationComponent implements OnInit {
 
   modifier(){
     this.marchandService.requirLogin().then(marchand => {
-      this.produitsService.updateProduit(this.article, marchand.id)
+      this.produitsService.updateProduit(this.article, marchand.id).subscribe(()=>{
+        this.router.navigateByUrl('recherche-article');
+      })
     })
   }
 
