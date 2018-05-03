@@ -145,7 +145,7 @@ export class MarchandService {
   validerCommande(idMarchand: string, idCommande: string){
     fakeapi(
       this.http.get<any>("/api/validation.json"),
-      this.http.post<any>('/api/validation/'+idMarchand+'/'+idCommande, { valide: true })
+      this.http.get<any>('/api/validation/'+idMarchand+'/'+idCommande)
     )
   }
 }
