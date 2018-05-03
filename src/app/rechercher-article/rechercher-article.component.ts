@@ -37,6 +37,7 @@ export class RechercherArticleComponent implements OnInit {
         error => this.msgError('Erreur du MAJ du produits : ' + JSON.stringify(error))
       );
     });
+    this.refreshProduits();
   }
 
   refreshProduits() {
