@@ -112,7 +112,7 @@ export class MarchandService {
   refreshMarchand(idMarchand: string): Observable<Marchand>{
     let ret = fakeapi(
       this.http.get<any>("/api/marchand.json"),
-      this.http.get<any>('/api/getMarchand'+idMarchand)
+      this.http.get<any>('/api/getMarchand/'+idMarchand)
     )
     ret.subscribe();
     return ret;
