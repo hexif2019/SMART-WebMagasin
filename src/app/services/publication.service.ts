@@ -16,10 +16,12 @@ export class PublicationService {
   }
 
   publier(marchandid: string, article: Article): Observable<string> {
-    return fakeapi(
+    let ret = fakeapi(
       this.http.get<any>("/api/article.json"),
       this.http.post<any>('/api/updateProduit', {article:article, marchandid: marchandid})
-    );
+    )
+    ret.subscribe();
+    return ret;
   }
 
 }

@@ -49,14 +49,16 @@ export class ProduitsService {
   }
 
   public updateProduit(magasinid: string,produit: Article): Observable<any>{
-    return fakeapi(
+    let ret = fakeapi(
       this.http.get<any>('api/article.json'),
       this.http.post<any>('api/updateProduit/'+magasinid, produit)
-    )
+    );
+    ret.subscribe();
+    return ret;
   }
 
-  public getProduits(marchandid: string): Observable<Article[]>{
-    return fakeapi(
+ /* public getProduits(marchandid: string): Observable<Article[]>{
+    let ret = fakeapi(
       this.http.get<Article[]>('api/listProduits.json'),
       this.http.get<Article[]>('api/getProduits/'+marchandid)
     ).map(
@@ -71,20 +73,26 @@ export class ProduitsService {
         return produits;
       }
     )
-  }
+    ret.subscribe();
+    return ret;
+  }*/
 
   public getProduit(marchandid: string, produitid: string): Observable<Article>{
-    return fakeapi(
+    let ret = fakeapi(
       this.http.get<Article>('api/article.json'),
       this.http.get<Article>('api/getProduits/'+marchandid+'/'+produitid)
     );
+    ret.subscribe();
+    return ret;
   }
 
   public removeArticle(marchandid: string, articleid: string):Observable<string>{
-    return fakeapi(
+    let ret = fakeapi(
       this.http.get<string>('api/article.json'),
       this.http.get<string>('api/deleteProduit'+'/'+marchandid+'/'+articleid)
-    )
+    );
+    ret.subscribe();
+    return ret;
   }
 
 }
