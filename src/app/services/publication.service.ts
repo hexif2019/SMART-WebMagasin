@@ -18,7 +18,7 @@ export class PublicationService {
   publier(marchandid: string, article: Article): Observable<string> {
     return fakeapi(
       this.http.get<any>("/api/article.json"),
-      this.http.post<any>('/api/publication', {marchandid: marchandid, article:article})
+      this.http.post<any>('/api/updateProduit', {article:article, marchandid: marchandid})
     );
   }
 
