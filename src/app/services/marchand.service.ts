@@ -143,9 +143,10 @@ export class MarchandService {
   }
 
   validerCommande(idMarchand: string, idCommande: string){
-    fakeapi(
+    let ret = fakeapi(
       this.http.get<any>("/api/validation.json"),
       this.http.get<any>('/api/validation/'+idMarchand+'/'+idCommande)
     )
+    ret.subscribe();
   }
 }
