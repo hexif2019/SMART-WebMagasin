@@ -4,7 +4,7 @@ import {CommandeService} from "../../services/commande.service";
 import {MarchandService} from "../../services/marchand.service";
 import {Article} from "../../models/article.model";
 import {Marchand} from "../../models/marchand";
-import *
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-page-home',
@@ -32,8 +32,8 @@ export class PageHomeComponent implements OnInit {
   refreshCommandes(){
     console.log("refresh!");
     this.marchandService.requirLogin().then(marchand =>{
-      this.marchand = marchand;
-      this.currentCommandes = marchand.commandes;
+      _.assign(this.marchand,marchand);
+      this.currentCommandes = this.marchand.commandes;
     });
   }
 
