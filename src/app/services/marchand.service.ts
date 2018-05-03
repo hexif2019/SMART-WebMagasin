@@ -81,7 +81,7 @@ export class MarchandService {
   login(email: string, password: string): Observable<Marchand>{
     let ret = fakeapi(
       this.http.get<any>("/api/authenticateMarchand.json"),
-      this.http.post<any>('/api/authenticate', { email: email, password: password })
+      this.http.post<any>('/api/authenticateMarchand', { email: email, password: password })
     )
       .map(data => {
 
