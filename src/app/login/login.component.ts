@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MarchandService} from "../services/marchand.service";
 import {Marchand} from "../models/marchand";
 import {FormControl} from "@angular/forms";
-import {ResidanceService} from "../services/residance.service";
 import {Residence} from "../models/residence";
 
 @Component({
@@ -31,16 +30,12 @@ export class LoginComponent {
 
   @Output() onLogin = new EventEmitter<Marchand>();
 
-  constructor(private marchandService: MarchandService,
-              private residanceService: ResidanceService) {
+  constructor(private marchandService: MarchandService) {
 
     this.codepostal.valueChanges.subscribe((value) => {
       this.valideCp = /^[0-9]{5}$/.test(value);
       if(this.valideCp){
         this.loadResidance = true;
-        this.residanceService.findResidanceFormCodePostal(value).subscribe(residances => {
-            this.residances = residances;
-        });
       }else{
         this.residances = [];
       }

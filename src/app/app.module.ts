@@ -8,11 +8,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MarchandService } from './services/marchand.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ResidanceService} from './services/residance.service';
 import { RouterModule, Routes } from '@angular/router';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
-import { PageBasketComponent } from './pages/page-basket/page-basket.component';
-import { PagePaymentComponent } from './pages/page-payment/page-payment.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserModule } from '@angular/platform-browser';
@@ -20,7 +17,6 @@ import {NavbarComponent} from './navbar/navbar.component'
 import { AlertModule} from 'ngx-bootstrap';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { FilterPipe } from './pipes/filter.pipe';
-import {PanierService} from './services/panier.service';
 import { PrixPipe } from './pipes/prix.pipe';
 import {CommandeService} from "./services/commande.service";
 import { PagePublicationComponent } from './pages/page-publication/page-publication.component';
@@ -36,8 +32,6 @@ const appRoutes: Routes = [
   { path: 'login', component: PageLoginComponent, data: { showRegister: false } },
   { path: 'register', component: PageLoginComponent, data: { showRegister: true }  },
   { path: 'home', component: PageHomeComponent},
-  { path: 'basket', component: PageBasketComponent},
-  { path: 'payment', component: PagePaymentComponent },
   { path: 'publication', component: PagePublicationComponent },
   { path: 'shop', component: PageShopComponent },
   { path: 'recherche-article', component: RechercherArticleComponent },
@@ -53,8 +47,6 @@ const appRoutes: Routes = [
     FilterPipe,
 
     PageLoginComponent,
-    PageBasketComponent,
-    PagePaymentComponent,
     PageNotFoundComponent,
     PageHomeComponent,
     PrixPipe,
@@ -75,7 +67,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [MarchandService, ResidanceService, PanierService, CommandeService, PublicationService, ProduitsService],
+  providers: [MarchandService, CommandeService, PublicationService, ProduitsService],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule]
 })
