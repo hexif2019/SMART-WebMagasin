@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Commande} from "../../models/commande";
 import {CommandeService} from "../../services/commande.service";
-import {UserService} from "../../services/user.service";
+import {MarchandService} from "../../services/marchand.service";
+import {Article} from "../../models/article.model";
+import {Marchand} from "../../models/marchand";
 
 @Component({
   selector: 'app-page-home',
@@ -9,29 +11,32 @@ import {UserService} from "../../services/user.service";
   styleUrls: ['./page-home.component.scss']
 })
 export class PageHomeComponent implements OnInit {
-  currentCommandes: Commande[];
-  oldCommandes: Commande[];
+  marchand: Marchand;
 
-  viewAllOldCommande = false;
+  currentCommandes: Commande[];
 
   constructor(
-    private commandeService: CommandeService,
-    private userService: UserService
+    private marchandService: MarchandService
   ) { }
 
   ngOnInit() {
-    this.userService.requirLogin().then(user =>{
-      this.commandeService.getCommandesEnCour(user.id).subscribe(commandes => this.currentCommandes = commandes );
-      this.commandeService.getLastCommandes(user.id).subscribe(commandes => this.oldCommandes = commandes );
+    this.marchandService.requirLogin().then(marchand =>{
+      this.marchand = marchand;
+      this.currentCommandes = marchand.commandes;
     });
   }
 
-  loadMorCommandes(){
+  refreshCommandes(){
 
-    this.userService.requirLogin().then(user => {
-      this.viewAllOldCommande = true;
-      this.commandeService.getCommandesArchiver(user.id).subscribe(commandes => this.oldCommandes = commandes);
+    this.marchandService.requirLogin().then(marchand =>{
+      this.marchand = marchand;
+      this.currentCommandes = marchand.commandes;
     });
+  }
+
+  valider(idCommande: string){
+    console.log('valide');
+    this.marchandService.validerCommande(this.marchand.id, idCommande);
   }
 
 }

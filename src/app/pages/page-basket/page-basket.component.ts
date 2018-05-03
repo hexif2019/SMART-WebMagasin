@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../services/user.service";
+import {MarchandService} from "../../services/marchand.service";
 import {Commande} from "../../models/commande";
 import {PanierService} from "../../services/panier.service";
 import {Magasin} from "../../models/magasin.model";
@@ -21,11 +21,11 @@ export class PageBasketComponent implements OnInit {
   }
 
   constructor(private panierService: PanierService,
-              private userService: UserService) { }
+              private marchandService: MarchandService) { }
 
   ngOnInit() {
-    this.userService.requirLogin().then(user => {
-      this.panierService.getPagner(user.id).subscribe(
+    this.marchandService.requirLogin().then(marchand => {
+      this.panierService.getPagner(marchand.id).subscribe(
         panier => {
           this.panier = panier;
           this.infoArticles = [];

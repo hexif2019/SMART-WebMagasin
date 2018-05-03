@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../../services/user.service";
+import {MarchandService} from "../../services/marchand.service";
 
 @Component({
   selector: 'app-page-login',
@@ -13,15 +13,15 @@ export class PageLoginComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private userService: UserService) { }
+              private marchandService: MarchandService) { }
 
   ngOnInit() {
     this.showRegister = this.route.snapshot.data['showRegister'];
-    if(this.userService.getUser()){
+    if(this.marchandService.getMarchand()){
       this.router.navigateByUrl('/home');
     }
-    this.userService.onLogin().subscribe(
-      user => this.router.navigateByUrl('/home')
+    this.marchandService.onLogin().subscribe(
+      marchand => this.router.navigateByUrl('/home')
     );
 
   }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Magasin} from '../models/magasin.model';
 import {Article} from "../models/article.model";
-import {PanierService} from "../services/panier.service";
-import {UserService} from "../services/user.service";
+import {MarchandService} from "../services/marchand.service";
 import {Commande} from "../models/commande";
+import {ProduitsService} from "../services/produits.service";
 
 @Component({
   selector: 'app-rechercher-article',
@@ -12,43 +12,35 @@ import {Commande} from "../models/commande";
 })
 export class RechercherArticleComponent implements OnInit {
   articles: Article[];
-  magasins: Magasin[];
-  magasinKeyWords: any;
-  articleKeyWords: any;
-  magasinSelectioner: Magasin;
-
-  panier: Commande;
+  articleSelectioner: Article;
 
   constructor(
-    private panierService: PanierService,
-    private userService: UserService
+    private marchandService: MarchandService,
+    private produitsService: ProduitsService
   ) {
 
   }
 
-  ajouterAuPanier(article: Article, qte: number) {
-    let user = this.userService.getUser();
-    article.display.isBuyed = true;
-    this.panierService.addArticle(user.id, this.magasinSelectioner, article, qte).subscribe(
-      nouveauPagner => {
-
-      },
-      error => this.msgError(JSON.stringify(error))
-    );
+  ngOnInit() {
+    this.marchandService.requirLogin().then(marchand => {
+      this.articles = marchand.produits;
+    });
   }
 
-  ngOnInit() {
-    this.userService.requirLogin().then(user => {
-      this.panierService.getMagasinsOfResidence(user.residence.id).subscribe(
-        magasins => this.magasins = magasins,
-        error => this.msgError(JSON.stringify(error))
-      );
-
-      this.panierService.getPagner(user.id).subscribe(
-        panier=> this.panier = panier,
-        error => this.msgError("Erreur du chargement du pagnier : " + JSON.stringify(error))
+  remove(article: Article){
+    // console.log("remove success");
+    this.marchandService.requirLogin().then(marchand => {
+      this.produitsService.removeArticle(marchand.id, article.id).subscribe(
+        () => {
+          console.log("remove success");
+        },
+        error => this.msgError('Erreur du MAJ du produits : ' + JSON.stringify(error))
       );
     });
+  }
+
+  modifier(article: Article){
+
   }
 
   msgError(msg: string){

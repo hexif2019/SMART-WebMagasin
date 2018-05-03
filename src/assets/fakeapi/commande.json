@@ -2,8 +2,9 @@
   "id": "20001",
   "etat": "",
   "prix": 105,
-  "magasinsCommande": [{
+  "magasins": [{
     "id": "30001",
+    "denomination": "Carrefour",
     "adresse": "4 Place Charles Hernu",
     "codePostal": 69100,
     "ville": "Villeurbanne",
@@ -14,7 +15,7 @@
       "longitude": 45.770142,
       "latitude": 4.863079
     },
-    "produitsCommande": [
+    "produits": [
       {
         "id": "40001",
         "denomination": "Cheeseburger",

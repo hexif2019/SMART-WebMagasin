@@ -3,14 +3,10 @@ import { Article } from '../models/article.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Observer, Subject} from 'rxjs/';
 import 'rxjs/add/operator/map';
-import {Residence} from "../models/residence";
 import {Magasin} from "../models/magasin.model";
 import {fakeapi} from "./fakeapi";
 import {Commande} from "../models/commande";
 import * as _ from "lodash";
-import {merge} from "rxjs/operator/merge";
-import {promise} from "selenium-webdriver";
-import {PromiseObservable} from "rxjs/observable/PromiseObservable";
 
 export class PanierEvent{
   oldPagnier: Commande;

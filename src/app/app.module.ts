@@ -6,7 +6,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { UserService } from './services/user.service';
+import { MarchandService } from './services/marchand.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResidanceService} from './services/residance.service';
 import { RouterModule, Routes } from '@angular/router';
@@ -27,6 +27,9 @@ import { PagePublicationComponent } from './pages/page-publication/page-publicat
 import {PublicationService} from "./services/publication.service";
 import {PageShopComponent} from "./pages/page-shop/page-shop.component";
 import {RechercherArticleComponent} from "./rechercher-article/rechercher-article.component";
+import {ProduitsService} from "./services/produits.service";
+import { ArticleEditorComponent } from './article-editor/article-editor.component';
+import { PageModificationComponent } from './pages/page-modification/page-modification.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -38,6 +41,7 @@ const appRoutes: Routes = [
   { path: 'publication', component: PagePublicationComponent },
   { path: 'shop', component: PageShopComponent },
   { path: 'recherche-article', component: RechercherArticleComponent },
+  { path: 'modification/:id', component: PageModificationComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 @NgModule({
@@ -56,7 +60,9 @@ const appRoutes: Routes = [
     PrixPipe,
     PagePublicationComponent,
     RechercherArticleComponent,
-    PageShopComponent
+    PageShopComponent,
+    ArticleEditorComponent,
+    PageModificationComponent
   ],
   imports: [
     AlertModule,
@@ -69,7 +75,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService, ResidanceService, PanierService, CommandeService, PublicationService],
+  providers: [MarchandService, ResidanceService, PanierService, CommandeService, PublicationService, ProduitsService],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule]
 })

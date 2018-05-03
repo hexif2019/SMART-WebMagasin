@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {UserService} from "../services/user.service";
-import {User} from "../models/user";
+import {MarchandService} from "../services/marchand.service";
+import {Marchand} from "../models/marchand";
 import {FormControl} from "@angular/forms";
 import {ResidanceService} from "../services/residance.service";
 import {Residence} from "../models/residence";
@@ -29,9 +29,9 @@ export class LoginComponent {
   valideCp = false;
   loadResidance = false;
 
-  @Output() onLogin = new EventEmitter<User>();
+  @Output() onLogin = new EventEmitter<Marchand>();
 
-  constructor(private userService: UserService,
+  constructor(private marchandService: MarchandService,
               private residanceService: ResidanceService) {
 
     this.codepostal.valueChanges.subscribe((value) => {
@@ -48,12 +48,12 @@ export class LoginComponent {
   }
   login(){
     this.loadLogin = true;
-    this.userService.login(this.email,this.password)
+    this.marchandService.login(this.email,this.password)
 
       .subscribe(
-        user =>{
-          console.log("LOGIN SUCCESS", user);
-          this.onLogin.emit(user);
+        marchand =>{
+          console.log("LOGIN SUCCESS", marchand);
+          this.onLogin.emit(marchand);
         },
         fail =>{
           this.msgLoginError = JSON.stringify(fail);
@@ -68,19 +68,19 @@ export class LoginComponent {
   }
 
   register(){
-    this.loadLogin = true;
-    let newUser: User = {
+    /*this.loadLogin = true;
+    let newMarchand: Marchand = {
       nom: this.nom,
       prenom: this.prenom,
       residence: this.residance,
       email: this.email
     }
-    this.userService.register(newUser,this.password)
+    this.marchandService.register(newMarchand,this.password)
 
       .subscribe(
-        user =>{
-          console.log("REGISTER SUCCESS", user);
-          this.onLogin.emit(user);
+        marchand =>{
+          console.log("REGISTER SUCCESS", marchand);
+          this.onLogin.emit(marchand);
         },
         fail =>{
           this.msgRegisterError = (fail.msg) || JSON.stringify(fail);
@@ -88,6 +88,6 @@ export class LoginComponent {
         ()=>{
           this.loadLogin = false;
         }
-      );
+      );*/
   }
 }

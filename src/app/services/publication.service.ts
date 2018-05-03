@@ -15,21 +15,11 @@ export class PublicationService {
     this.loginSubject = new Subject<Article>();
   }
 
-  publier(article: Article): Observable<Article> {
-    let ret = fakeapi(
+  publier(marchandid: string, article: Article): Observable<string> {
+    return fakeapi(
       this.http.get<any>("/api/article.json"),
-      this.http.post<any>('/api/publication', {article:article})
-        .map(data => {
-
-          this.article = data.article;
-
-          return this.article;
-        })
+      this.http.post<any>('/api/publication', {marchandid: marchandid, article:article})
     );
-    ret.subscribe(article => {
-      this.loginSubject.next(article);
-    });
-    return ret;
   }
 
 }

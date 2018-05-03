@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {User} from "../models/user";
-import {UserService} from "../services/user.service";
+import {Marchand} from "../models/marchand";
+import {MarchandService} from "../services/marchand.service";
 
 @Component({
   selector: 'app-navbar',
@@ -10,28 +10,28 @@ import {UserService} from "../services/user.service";
 })
 export class NavbarComponent implements OnInit {
 
-  user: User | null;
+  marchand: Marchand | null;
 
   constructor(
     private router: Router,
-    private userService: UserService
+    private marchandService: MarchandService
   ) {
   }
 
   ngOnInit() {
-    this.userService.onLogin().subscribe(user => {
-      this.user = user;
-      console.log("nav user login!");
+    this.marchandService.onLogin().subscribe(marchand => {
+      this.marchand = marchand;
+      console.log("nav marchand login!");
     });
-    this.userService.onLogout().subscribe(user => {
-      this.user = null;
-      console.log("nav user logout!");
+    this.marchandService.onLogout().subscribe(marchand => {
+      this.marchand = null;
+      console.log("nav marchand logout!");
     });
-    this.user = this.userService.getUser();
+    this.marchand = this.marchandService.getMarchand();
   }
 
   logout(){
-    this.userService.logout();
+    this.marchandService.logout();
   }
 
 

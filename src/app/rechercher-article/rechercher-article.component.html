@@ -1,43 +1,32 @@
 <div class="container">
   <div class="row">
     <h1 class="entry-title"><span>Mes produits</span></h1>
-    <div class="col-md-8">
-      <div class="items">
-        <div *ngIf="magasinSelectioner">
+    <div class="search">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+               [(ngModel)]="articleKeyWords" name="kwa">
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngFor="let a of articles | filter: articleKeyWords">
+      <div class="my-list" >
+        <img src="{{a.img}}"/>
+        <h3>{{a.denomination}}</h3>
+        <span>Prix: {{a.prix/100}}</span>
+        <div class="detail">
+          <small>{{a.description}}</small>
+          <!--<img src="http://hpservicecenterschennai.in/images/hp_laptop_service_centers_in_guindy.png" alt="dsadas" />-->
           <div>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                     [(ngModel)]="articleKeyWords" name="kwa">
-            </form>
-          </div>
-          <div data-price="290" class="item" *ngFor="let a of magasinSelectioner.produits | filter : articleKeyWords">
-            <img style="max-width:100%;" src="{{a.img}}"/>
-            <div class="info">
-              <h3>{{a.denomination}}</h3>
-              <p class="descroption">Description: {{a.description}}</p>
-              <h5>{{a.prix/100*a.nb}} euros</h5>
-            </div>
-            <div class="section" style="padding-bottom:20px;">
-              <div class="form-group row">
-                <label for="number-input" class="col-4 col-form-label">Number</label>
-                <div class="col-8">
-                  <input [(ngModel)]="a.nb" type="number" class="form-control" value="1" id="number-input" min="0"
-                         max="99"
-                         step="1"/>
-                </div>
-              </div>
-            </div>
-            <div class="section" style="padding-bottom:20px;">
-              <div *ngIf="a.display.isBuyed" class="msg">
-                article ajouté
-              </div>
-              <button class="btn btn-default" (click)="modifier(a)">Ajouter</button>
-            </div>
+            <button class="btn btn-danger" (click)="remove(a)">Remove</button>
+            <!--<button class="btn btn-success" (click)="remove(a)">Modifier</button>-->
+            <a class="btn btn-success" [routerLink]="['/modification', a.id]">Modifier</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
 </div>
