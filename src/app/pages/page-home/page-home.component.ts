@@ -17,7 +17,9 @@ export class PageHomeComponent implements OnInit {
 
   constructor(
     private marchandService: MarchandService
-  ) { }
+  ) {
+    setInterval(() => this.refreshCommandes(), 10000);
+  }
 
   ngOnInit() {
     this.marchandService.requirLogin().then(marchand =>{
@@ -27,7 +29,7 @@ export class PageHomeComponent implements OnInit {
   }
 
   refreshCommandes(){
-
+    console.log("refresh!");
     this.marchandService.requirLogin().then(marchand =>{
       this.marchand = marchand;
       this.currentCommandes = marchand.commandes;
@@ -37,6 +39,7 @@ export class PageHomeComponent implements OnInit {
   valider(idCommande: string){
     console.log('valide');
     this.marchandService.validerCommande(this.marchand.id, idCommande);
+    this.refreshCommandes();
   }
 
 }
