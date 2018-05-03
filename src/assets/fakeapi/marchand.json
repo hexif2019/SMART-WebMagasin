@@ -12,15 +12,6 @@
       "quantite": 2,
       "prix": 320,
       "prixTotal": 640
-    },
-    {
-      "id": "40002",
-      "denomination": "Chili burger",
-      "description": "A chili burger (also known as a chili size, or simply size, stemming from \"hamburger size\") is a type of hamburger",
-      "img": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Chili_burger_%28cropped%29.jpg",
-      "quantite": 1,
-      "prix": 415,
-      "prixTotal": 415
     }
   ],
   "commandes": [
