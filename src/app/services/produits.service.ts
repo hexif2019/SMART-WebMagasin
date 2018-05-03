@@ -90,7 +90,6 @@ export class ProduitsService {
       this.http.get<string>('api/article.json'),
       this.http.get<string>('api/deleteProduit'+'/'+marchandid+'/'+articleid)
     );
-    ret.subscribe();
     return ret;
   }
 
