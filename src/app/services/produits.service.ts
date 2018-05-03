@@ -53,7 +53,6 @@ export class ProduitsService {
       this.http.get<any>('api/article.json'),
       this.http.post<any>('/api/updateProduit', {produit:produit, idMagasin: marchandid})
     );
-    ret.subscribe()
     return ret;
   }
 

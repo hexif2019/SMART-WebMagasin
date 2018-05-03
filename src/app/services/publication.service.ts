@@ -20,7 +20,6 @@ export class PublicationService {
       this.http.get<any>("/api/article.json"),
       this.http.post<any>('/api/updateProduit', {produit:article, idMagasin: marchandid})
     )
-    ret.subscribe();
     return ret;
   }
 
