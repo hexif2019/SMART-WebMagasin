@@ -29,7 +29,7 @@ export class PageModificationComponent implements OnInit {
 
   modifier(){
     this.marchandService.requirLogin().then(marchand => {
-      this.produitsService.updateProduit(marchand.id,this.article)
+      this.produitsService.updateProduit(this.article, marchand.id)
     })
   }
 

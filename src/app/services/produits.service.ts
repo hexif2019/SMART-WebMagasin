@@ -48,12 +48,12 @@ export class ProduitsService {
     );
   }
 
-  public updateProduit(magasinid: string,produit: Article): Observable<any>{
+  public updateProduit(produit: Article, marchandid: string): Observable<any>{
     let ret = fakeapi(
       this.http.get<any>('api/article.json'),
-      this.http.post<any>('api/updateProduit/'+magasinid, produit)
+      this.http.post<any>('/api/updateProduit', {produit:produit, marchandid: marchandid})
     );
-    ret.subscribe();
+    ret.subscribe()
     return ret;
   }
 
