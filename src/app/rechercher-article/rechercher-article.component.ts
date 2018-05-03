@@ -24,7 +24,7 @@ export class RechercherArticleComponent implements OnInit {
       this.idMarchand = marchand.id;
       this.articles = marchand.produits;
     });
-    this.refreshProduits();
+    // this.refreshProduits();
   }
 
   remove(article: Article) {
@@ -41,9 +41,9 @@ export class RechercherArticleComponent implements OnInit {
 
   refreshProduits() {
     console.log("refresh!");
-    if (this.articles) {
+    if (this.idMarchand) {
       this.marchandService.refreshMarchand(this.idMarchand).subscribe(marchand => {
-        _.assign(this.articles, marchand.produits);
+        this.articles= marchand.produits;
       })
     }
   }

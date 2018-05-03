@@ -33,7 +33,7 @@ export class PageHomeComponent implements OnInit {
     console.log("refresh!");
     if(this.marchand){
       this.marchandService.refreshMarchand(this.marchand.id).subscribe(marchand=>{
-        _.assign(this.marchand,marchand);
+        this.marchand = marchand;
         this.currentCommandes = this.marchand.commandes;
       })
     }

@@ -46,7 +46,11 @@ export class MarchandService {
   requirLogin(): Promise<Marchand>{
     return new Promise<Marchand>(executor => {
       if(this.marchand){
-        executor(this.marchand);
+        this.refreshMarchand(this.marchand.id).subscribe(marchand=>{
+          this.marchand=marchand;
+          executor(this.marchand);
+        })
+
       }else if(this.tokenLoading){
         this.tokenObservable.subscribe(
           marchand => {
