@@ -1,7 +1,7 @@
 <div class="loginmodal-container">
   <div *ngIf="!showRegister">
     <div *ngIf="msgLoginError" class="alert-danger"> {{ msgLoginError }}</div>
-    <h1>Login</h1><br>
+    <h1>Connexion</h1><br>
     <form (ngSubmit)="login()">
       <input type="email" name="email" placeholder="Email" ngClass="{disable: loadLogin}" [(ngModel)]="email" #name="ngModel">
       <input type="password" name="pass" placeholder="Password" ngClass="{disable: loadLogin}" [(ngModel)]="password" #name="ngModel">

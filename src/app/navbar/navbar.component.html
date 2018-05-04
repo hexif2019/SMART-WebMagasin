@@ -6,10 +6,10 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li [hidden]="!marchand" class="nav-item"><a class="nav-link" routerLink="/shop">Produits</a></li>
-      <li [hidden]="!marchand" class="nav-item"><a class="nav-link" routerLink="/publication">Publier</a></li>
-      <li [hidden]="marchand" class="nav-item"><a class="nav-link" routerLink="/login">Login</a></li>
-      <li [hidden]="!marchand" class="nav-item"><a class="nav-link" href="javascript:void(0)" (click)="logout()">Logout</a></li>
+      <li [hidden]="!marchand" class="nav-item"><a class="nav-link" routerLink="/shop">Vos Produits</a></li>
+      <li [hidden]="!marchand" class="nav-item"><a class="nav-link" routerLink="/publication">Publication</a></li>
+      <li [hidden]="marchand" class="nav-item"><a class="nav-link" routerLink="/login">Connexion</a></li>
+      <li [hidden]="!marchand" class="nav-item"><a class="nav-link" href="javascript:void(0)" (click)="logout()">Déconnexion</a></li>
   </ul>
   </div>
 </nav>
