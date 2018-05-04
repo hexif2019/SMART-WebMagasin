@@ -12,7 +12,8 @@ import * as _ from 'lodash';
 export class RechercherArticleComponent implements OnInit {
   articles: Article[];
   idMarchand;
-  articleSelectioner: Article;
+  articleSelectioner: Article
+  articleKeyWords;
 
   constructor(private marchandService: MarchandService,
               private produitsService: ProduitsService) {
